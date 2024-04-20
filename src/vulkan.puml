@@ -1,0 +1,19 @@
+@startuml
+!theme plain
+
+participant "Application" as App
+participant "VkPipelineLayout" as PipelineLayout
+participant "VkShaderModule(s)" as Shaders
+participant "VkRenderPass" as RenderPass
+participant "VkGraphicsPipeline" as GraphicsPipeline
+database "VkDevice" as Device
+
+App -> Device : Create ShaderModule(s)\nfor vertex & fragment shaders
+App -> PipelineLayout : Define VkPipelineLayout\n(resource bindings)
+App -> RenderPass : Define VkRenderPass\n(attachments & subpasses)
+App -> GraphicsPipeline : Create VkGraphicsPipeline\nusing above components
+
+note right of GraphicsPipeline : GraphicsPipeline configures the stages of the\nVulkan graphics pipeline, including:\n- Vertex Input\n- Input Assembly\n- Vertex Shading\n- Rasterization\n- Fragment Shading\n- Color Blending\n- Framebuffer output
+
+@enduml
+
